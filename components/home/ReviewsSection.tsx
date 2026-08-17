@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Quote, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import RatingStars from "@/components/ui/RatingStars";
+import { LiyawelaMotif } from "@/components/ui/TraditionalMotifs";
 
 export default function ReviewsSection() {
   const testimonials = [
@@ -33,7 +34,14 @@ export default function ReviewsSection() {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-brandBg border-t border-brandDark/5">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-brandDark/5 overflow-hidden">
+      {/* Traditional Sri Lankan Liyawela Watermark */}
+      <div className="absolute -bottom-10 -left-10 w-72 h-72 text-primary opacity-[0.035] pointer-events-none select-none z-0">
+        <LiyawelaMotif className="w-full h-full" />
+      </div>
+      <div className="absolute -top-10 -right-10 w-72 h-72 text-primary opacity-[0.035] pointer-events-none select-none z-0 rotate-180">
+        <LiyawelaMotif className="w-full h-full" />
+      </div>
       <div className="max-w-7xl mx-auto">
         <SectionHeading
           badge="Traveler Voices"

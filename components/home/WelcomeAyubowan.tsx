@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Plane, Award, Compass, ShieldCheck } from "lucide-react";
+import { LiyawelaMotif, SandakadaPahanaArc } from "@/components/ui/TraditionalMotifs";
 
 export default function WelcomeAyubowan() {
   const cards = [
@@ -13,10 +14,11 @@ export default function WelcomeAyubowan() {
       badge: "Official Travel Entry",
       title: "TOURIST VISA SRI LANKA",
       subtitle: "Department of Immigration & Emigration",
-      description: "Quick online Electronic Travel Authorization (ETA). Check visa requirements, application steps, and travel guidelines before you fly.",
+      description: "Quick online Electronic Travel Authorization (ETA). Access the official government portal for visa applications, ETA requirements, and entry rules.",
       image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=1000&auto=format&fit=crop", // Flight / passport / beach
-      link: "/plan-your-trip#visa",
-      linkText: "Apply / Check Visa Info",
+      link: "https://www.immigration.gov.lk/",
+      isExternal: true,
+      linkText: "Apply Official ETA Online",
       icon: <Plane className="w-5 h-5 text-secondary" />,
     },
     {
@@ -27,6 +29,7 @@ export default function WelcomeAyubowan() {
       description: "Recognised as one of the world's premier destinations offering UNESCO ancient ruins, world-class surf breaks, and wild leopard sanctuaries.",
       image: "https://images.unsplash.com/photo-1588598198321-9735fd52455b?q=80&w=1000&auto=format&fit=crop", // Polonnaruwa / Sigiriya stone temple
       link: "/destinations",
+      isExternal: false,
       linkText: "Explore Top Hotspots",
       icon: <Award className="w-5 h-5 text-secondary" />,
     },
@@ -38,6 +41,7 @@ export default function WelcomeAyubowan() {
       description: "Special category of Residence Visa for investors and remote digital nomads seeking a tropical base in coastal paradise.",
       image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop", // Tropical palm beach & luxury resort
       link: "/plan-your-trip",
+      isExternal: false,
       linkText: "Learn About Residency",
       icon: <Compass className="w-5 h-5 text-secondary" />,
     },
@@ -45,8 +49,19 @@ export default function WelcomeAyubowan() {
 
   return (
     <section id="welcome-section" className="relative py-24 sm:py-32 bg-white overflow-hidden border-b border-brandDark/5">
+      {/* Traditional Sri Lankan Background Watermarks */}
+      <div className="absolute top-4 left-4 w-48 h-48 sm:w-64 sm:h-64 text-primary opacity-[0.04] pointer-events-none select-none z-0">
+        <LiyawelaMotif className="w-full h-full" />
+      </div>
+      <div className="absolute bottom-4 right-4 w-48 h-48 sm:w-64 sm:h-64 text-primary opacity-[0.04] pointer-events-none select-none z-0 rotate-180">
+        <LiyawelaMotif className="w-full h-full" />
+      </div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 sm:w-96 text-primary opacity-[0.035] pointer-events-none select-none z-0">
+        <SandakadaPahanaArc className="w-full h-full" />
+      </div>
+
       {/* Elegant Calligraphic Watermark Backdrop */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 select-none pointer-events-none z-0 opacity-[0.06] text-center w-full">
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 select-none pointer-events-none z-0 opacity-[0.05] text-center w-full">
         <span className="font-serif italic font-extrabold text-[120px] sm:text-[180px] md:text-[240px] text-brandDark tracking-tighter block leading-none">
           Ayubowan
         </span>
@@ -131,13 +146,25 @@ export default function WelcomeAyubowan() {
                   {card.description}
                 </p>
 
-                <Link
-                  href={card.link}
-                  className="inline-flex items-center justify-between w-full pt-4 border-t border-brandDark/10 text-xs sm:text-sm font-bold uppercase tracking-wider text-primary group-hover:text-primary-dark transition-colors"
-                >
-                  <span>{card.linkText}</span>
-                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-                </Link>
+                {card.isExternal ? (
+                  <a
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-brandDark/10 text-xs sm:text-sm font-bold uppercase tracking-wider text-primary hover:text-primary-dark transition-colors"
+                  >
+                    <span>{card.linkText}</span>
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+                  </a>
+                ) : (
+                  <Link
+                    href={card.link}
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-brandDark/10 text-xs sm:text-sm font-bold uppercase tracking-wider text-primary group-hover:text-primary-dark transition-colors"
+                  >
+                    <span>{card.linkText}</span>
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+                  </Link>
+                )}
               </div>
             </motion.div>
           ))}
