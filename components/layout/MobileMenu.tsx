@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { User } from "@/context/AuthContext";
 import {
-  Compass,
   Heart,
   User as UserIcon,
   LogOut,
@@ -15,6 +14,7 @@ import {
   X,
   ChevronRight,
 } from "lucide-react";
+import CompassLogo from "@/components/ui/CompassLogo";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -51,10 +51,8 @@ export default function MobileMenu({
       <div className="relative ml-auto w-full max-w-sm bg-white h-full shadow-2xl flex flex-col z-50 animate-in slide-in-from-right duration-300">
         {/* Header */}
         <div className="p-5 flex items-center justify-between border-b border-brandDark/10 bg-brandBg">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
-              <Compass className="w-4 h-4" />
-            </div>
+          <div className="flex items-center gap-2.5">
+            <CompassLogo size="sm" />
             <span className="font-serif text-lg font-bold text-brandDark">
               Lanka<span className="text-secondary">Explore</span>
             </span>

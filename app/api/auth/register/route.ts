@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import connectDB from "@/lib/db";
-import User from "@/models/User";
-import { hashPassword, signJwtToken } from "@/lib/auth";
+import { findUserByEmail, createUser } from "@/lib/userStore";
+import { signJwtToken } from "@/lib/auth";
 
 const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(60),
@@ -24,10 +23,9 @@ export async function POST(req: Request) {
     }
 
     const { name, email, password, country } = parsed.data;
-    await connectDB();
 
     // Check if user already exists
-    const existing = await User.findOne({ email: email.toLowerCase() });
+    const existing = await findUserByEmail(email);
     if (existing) {
       return NextResponse.json(
         { error: "An account with this email address already exists." },
@@ -35,21 +33,16 @@ export async function POST(req: Request) {
       );
     }
 
-    // Default first user or specific email to admin, else user
-    const count = await User.countDocuments();
-    const role = count === 0 || email.toLowerCase().includes("admin") ? "admin" : "user";
-
-    const hashedPassword = await hashPassword(password);
-    const user = await User.create({
+    // Create user in DB or in-memory fallback
+    const user = await createUser({
       name,
-      email: email.toLowerCase(),
-      password: hashedPassword,
-      role,
-      country: country || "",
+      email,
+      password,
+      country,
     });
 
     const token = signJwtToken({
-      userId: user._id.toString(),
+      userId: user._id,
       email: user.email,
       name: user.name,
       role: user.role,
@@ -59,7 +52,7 @@ export async function POST(req: Request) {
       {
         message: "Registration successful",
         user: {
-          id: user._id.toString(),
+          id: user._id,
           name: user.name,
           email: user.email,
           role: user.role,
@@ -81,7 +74,7 @@ export async function POST(req: Request) {
   } catch (err: any) {
     console.error("Register API error:", err);
     return NextResponse.json(
-      { error: "Registration failed. Please try again later." },
+      { error: err?.message || "Registration failed. Please try again." },
       { status: 500 }
     );
   }

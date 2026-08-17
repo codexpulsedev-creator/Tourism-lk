@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "@/components/home/Hero";
+import WelcomeAyubowan from "@/components/home/WelcomeAyubowan";
 import ExploreCategories from "@/components/home/ExploreCategories";
 import PopularDestinations from "@/components/home/PopularDestinations";
 import ExperiencesSection from "@/components/home/ExperiencesSection";
@@ -40,37 +41,40 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-0">
-      {/* 1. Hero */}
+      {/* 1. Full-screen Cinematic Hero (AN ISLAND ESCAPE AWAITS YOU) */}
       <Hero />
 
-      {/* 2. Explore Sri Lanka (Categories) */}
+      {/* 2. Ayubowan - Welcome to Sri Lanka Highlight Section */}
+      <WelcomeAyubowan />
+
+      {/* 3. Explore Sri Lanka (Categories) */}
       <ExploreCategories />
 
-      {/* 3. Popular Destinations */}
+      {/* 4. Popular Destinations */}
       <PopularDestinations destinations={destinations} />
 
-      {/* 4. Signature Experiences */}
+      {/* 5. Signature Experiences */}
       <ExperiencesSection experiences={experiences} />
 
-      {/* 5. Interactive Map of Sri Lanka */}
+      {/* 6. Interactive Map of Sri Lanka */}
       <MapSection destinations={destinations} />
 
-      {/* 6. Plan Your Trip Guide */}
+      {/* 7. Plan Your Trip Guide */}
       <PlanTripSection />
 
-      {/* 7. Featured Itineraries */}
+      {/* 8. Featured Itineraries */}
       <FeaturedItineraries itineraries={itineraries} />
 
-      {/* 8. Upcoming Events & Festivals */}
+      {/* 9. Upcoming Events & Festivals */}
       <UpcomingEvents events={events} />
 
-      {/* 9. Boutique Stays & Eco Lodges */}
+      {/* 10. Boutique Stays & Eco Lodges */}
       <AccommodationSection accommodations={accommodations} />
 
-      {/* 10. Ceylon Chronicles (Travel Stories) */}
+      {/* 11. Ceylon Chronicles (Travel Stories) */}
       <TravelStoriesSection stories={stories} />
 
-      {/* 11. Traveler Reviews */}
+      {/* 12. Traveler Reviews */}
       <ReviewsSection />
     </div>
   );

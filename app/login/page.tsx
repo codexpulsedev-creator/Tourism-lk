@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Compass, Lock, Mail, ArrowRight, AlertCircle } from "lucide-react";
+import { Lock, Mail, ArrowRight, AlertCircle } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import CompassLogo from "@/components/ui/CompassLogo";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -33,8 +34,8 @@ export default function LoginPage() {
     <div className="min-h-screen pt-28 pb-16 px-4 flex items-center justify-center bg-brandBg">
       <div className="w-full max-w-md bg-white rounded-3xl p-8 sm:p-10 border border-brandDark/8 shadow-card space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-full bg-primary text-white mx-auto flex items-center justify-center shadow-md">
-            <Compass className="w-6 h-6" />
+          <div className="flex justify-center">
+            <CompassLogo size="lg" />
           </div>
           <h1 className="font-serif text-3xl font-bold text-brandDark">Welcome Back</h1>
           <p className="text-xs sm:text-sm text-brandDark/60">

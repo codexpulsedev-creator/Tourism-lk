@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import connectDB from "@/lib/db";
-import User from "@/models/User";
+import { findUserByEmail } from "@/lib/userStore";
 import { comparePassword, signJwtToken } from "@/lib/auth";
 
 const loginSchema = z.object({
@@ -22,9 +21,8 @@ export async function POST(req: Request) {
     }
 
     const { email, password } = parsed.data;
-    await connectDB();
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await findUserByEmail(email);
     if (!user || !user.password) {
       return NextResponse.json(
         { error: "Invalid email or password." },
@@ -41,7 +39,7 @@ export async function POST(req: Request) {
     }
 
     const token = signJwtToken({
-      userId: user._id.toString(),
+      userId: user._id,
       email: user.email,
       name: user.name,
       role: user.role,
@@ -50,7 +48,7 @@ export async function POST(req: Request) {
     const response = NextResponse.json({
       message: "Login successful",
       user: {
-        id: user._id.toString(),
+        id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,

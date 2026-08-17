@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import {
-  Compass,
   Search,
   Globe,
   Heart,
@@ -17,6 +16,7 @@ import {
   ShieldCheck,
   MapPin,
 } from "lucide-react";
+import CompassLogo from "@/components/ui/CompassLogo";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
@@ -72,13 +72,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div
-              className={`w-9 h-9 rounded-full flex items-center justify-center transition-transform group-hover:scale-105 ${
-                isTransparent ? "bg-white/15 text-white backdrop-blur-sm" : "bg-primary text-white"
-              }`}
-            >
-              <Compass className="w-5 h-5 animate-pulse" />
-            </div>
+            <CompassLogo size="md" isTransparent={isTransparent} />
             <div className="flex flex-col">
               <span
                 className={`font-serif text-xl sm:text-2xl font-bold tracking-tight ${

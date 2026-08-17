@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/auth";
-import connectDB from "@/lib/db";
-import User from "@/models/User";
+import { findUserById } from "@/lib/userStore";
 
 export async function GET() {
   try {
@@ -10,16 +9,23 @@ export async function GET() {
       return NextResponse.json({ user: null }, { status: 200 });
     }
 
-    await connectDB();
-    const user = await User.findById(session.userId).select("-password");
+    const user = await findUserById(session.userId);
 
     if (!user) {
-      return NextResponse.json({ user: null }, { status: 200 });
+      // Return session data directly if record lookup fallback
+      return NextResponse.json({
+        user: {
+          id: session.userId,
+          name: session.name,
+          email: session.email,
+          role: session.role,
+        },
+      });
     }
 
     return NextResponse.json({
       user: {
-        id: user._id.toString(),
+        id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Compass,
   Mail,
   Send,
   Phone,
@@ -11,6 +10,7 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
+import CompassLogo from "@/components/ui/CompassLogo";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -50,10 +50,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Col 1 & 2: Brand and Newsletter */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
-                <Compass className="w-5 h-5" />
-              </div>
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <CompassLogo size="md" />
               <div className="flex flex-col">
                 <span className="font-serif text-2xl font-bold tracking-tight text-white">
                   Lanka<span className="text-secondary">Explore</span>
