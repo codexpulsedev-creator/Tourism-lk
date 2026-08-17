@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { getEvents } from "@/lib/dataService";
 import EventCard from "@/components/ui/EventCard";
+import PageHeaderBanner from "@/components/ui/PageHeaderBanner";
 
 export const metadata: Metadata = {
   title: "Events & Cultural Festivals in Sri Lanka — LankaExplore",
@@ -13,23 +14,21 @@ export default async function EventsPage() {
   const events: any[] = await getEvents();
 
   return (
-    <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
-      <div className="max-w-3xl">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 mb-3">
-          Cultural Celebrations
-        </span>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-brandDark tracking-tight">
-          Upcoming Events & Festivals
-        </h1>
-        <p className="text-base sm:text-lg text-brandDark/70 mt-3 leading-relaxed">
-          Immerse yourself in thousands of years of living tradition, electrifying Kandyan fire dancers, sacred illuminated full moon festivals, and international literary arts.
-        </p>
-      </div>
+    <div className="pb-24 space-y-12">
+      <PageHeaderBanner
+        title="Upcoming Events & Festivals"
+        subtitle="Immerse yourself in thousands of years of living tradition, electrifying Kandyan fire dancers, sacred pageants, and international celebrations."
+        category="CULTURAL CELEBRATIONS & PAGEANTRY"
+        backgroundImage="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=85&w=2000&auto=format&fit=crop"
+        breadcrumbs={[{ label: "Events & Festivals" }]}
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.map((event: any) => (
-          <EventCard key={event.slug || event._id} event={event} />
-        ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {events.map((event: any) => (
+            <EventCard key={event.slug || event._id} event={event} />
+          ))}
+        </div>
       </div>
     </div>
   );

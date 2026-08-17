@@ -4,45 +4,48 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Plane, Award, Compass, ShieldCheck } from "lucide-react";
+import { ArrowRight, Plane, Award, Compass } from "lucide-react";
 import { LiyawelaMotif, SandakadaPahanaArc } from "@/components/ui/TraditionalMotifs";
+import { useAuth } from "@/context/AuthContext";
 
 export default function WelcomeAyubowan() {
+  const { t } = useAuth();
+
   const cards = [
     {
       id: "visa",
       badge: "Official Travel Entry",
-      title: "TOURIST VISA SRI LANKA",
+      title: t("visaTitle", "TOURIST VISA SRI LANKA"),
       subtitle: "Department of Immigration & Emigration",
-      description: "Quick online Electronic Travel Authorization (ETA). Access the official government portal for visa applications, ETA requirements, and entry rules.",
-      image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=1000&auto=format&fit=crop", // Flight / passport / beach
+      description: t("visaDesc", "Quick online Electronic Travel Authorization (ETA). Access the official government portal for visa applications, ETA requirements, and entry rules."),
+      image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=1000&auto=format&fit=crop",
       link: "https://www.immigration.gov.lk/",
       isExternal: true,
-      linkText: "Apply Official ETA Online",
+      linkText: t("visaBtn", "Apply Official ETA Online"),
       icon: <Plane className="w-5 h-5 text-secondary" />,
     },
     {
       id: "award",
       badge: "Global Accolade",
-      title: "50 BEST PLACES TO TRAVEL IN THE WORLD — 2026",
+      title: t("awardsTitle", "50 BEST PLACES TO TRAVEL IN THE WORLD — 2026"),
       subtitle: "Global Tourism Ranking",
-      description: "Recognised as one of the world's premier destinations offering UNESCO ancient ruins, world-class surf breaks, and wild leopard sanctuaries.",
-      image: "https://images.unsplash.com/photo-1588598198321-9735fd52455b?q=80&w=1000&auto=format&fit=crop", // Polonnaruwa / Sigiriya stone temple
+      description: t("awardsDesc", "Recognised as one of the world's premier destinations offering UNESCO ancient ruins, world-class surf breaks, and wild leopard sanctuaries."),
+      image: "https://images.unsplash.com/photo-1588598198321-9735fd52455b?q=80&w=1000&auto=format&fit=crop",
       link: "/destinations",
       isExternal: false,
-      linkText: "Explore Top Hotspots",
+      linkText: t("awardsBtn", "Explore Top Hotspots"),
       icon: <Award className="w-5 h-5 text-secondary" />,
     },
     {
       id: "golden-visa",
       badge: "Long-Stay & Residency",
-      title: "GOLDEN PARADISE VISA",
+      title: t("goldenVisaTitle", "GOLDEN PARADISE VISA"),
       subtitle: "Residence & Digital Nomad Hub",
-      description: "Special category of Residence Visa for investors and remote digital nomads seeking a tropical base in coastal paradise.",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop", // Tropical palm beach & luxury resort
+      description: t("goldenVisaDesc", "Special category of Residence Visa for investors and remote digital nomads seeking a tropical base in coastal paradise."),
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
       link: "/plan-your-trip",
       isExternal: false,
-      linkText: "Learn About Residency",
+      linkText: t("goldenVisaBtn", "Learn About Residency"),
       icon: <Compass className="w-5 h-5 text-secondary" />,
     },
   ];
@@ -76,7 +79,7 @@ export default function WelcomeAyubowan() {
             viewport={{ once: true }}
             className="text-xs font-bold uppercase tracking-widest text-primary block"
           >
-            Traditional Greeting & Hospitality
+            {t("welcomeSubtitle", "Traditional Greeting & Hospitality")}
           </motion.span>
 
           <motion.h2
@@ -86,7 +89,7 @@ export default function WelcomeAyubowan() {
             transition={{ delay: 0.1 }}
             className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-brandDark tracking-tight"
           >
-            Welcome to Sri Lanka
+            {t("welcomeTitle", "Welcome to Sri Lanka")}
           </motion.h2>
 
           <motion.div
@@ -96,8 +99,7 @@ export default function WelcomeAyubowan() {
             transition={{ delay: 0.2 }}
             className="space-y-1 text-sm sm:text-base md:text-lg text-brandDark/70 leading-relaxed font-sans pt-2"
           >
-            <p>See what's waiting for you on your next island getaway.</p>
-            <p>Savour the unique experiences this island treasure has to offer.</p>
+            <p>{t("welcomeDesc", "See what's waiting for you on your next island getaway.")}</p>
           </motion.div>
         </div>
 

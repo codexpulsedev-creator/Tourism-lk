@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, ChevronDown, Sparkles, Compass } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const heroSlides = [
   {
@@ -46,6 +47,7 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const { t } = useAuth();
 
   // Auto rotate hero slides every 7 seconds
   useEffect(() => {
@@ -149,7 +151,7 @@ export default function Hero() {
               <Search className="w-5 h-5 text-primary flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Find destinations, experiences, festivals..."
+                placeholder={t("heroSearchPlaceholder", "Find destinations, experiences, festivals...")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent text-sm sm:text-base text-brandDark placeholder-brandDark/50 font-medium focus:outline-none"
@@ -159,7 +161,7 @@ export default function Hero() {
               type="submit"
               className="px-6 sm:px-8 py-3 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 flex-shrink-0 flex items-center gap-2"
             >
-              <span>Search</span>
+              <span>{t("navExplore", "Search")}</span>
             </button>
           </form>
 

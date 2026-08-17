@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { SUPPORTED_LANGUAGES, getTranslation, LanguageOption } from "@/lib/translations";
 
 export interface User {
   id: string;
@@ -22,6 +23,8 @@ interface AuthContextType {
   isFavorite: (idOrSlug: string) => boolean;
   language: string;
   setLanguage: (lang: string) => void;
+  t: (key: string, fallback?: string) => string;
+  languages: LanguageOption[];
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -72,6 +75,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("lanka_lang", lang);
   };
 
+  const t = (key: string, fallback?: string): string => {
+    return getTranslation(language, key, fallback);
+  };
+
   const fetchFavorites = async () => {
     try {
       const res = await fetch("/api/favorites");
@@ -83,7 +90,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           localStorage.setItem("lanka_favorites", JSON.stringify(slugs));
         }
       }
-    } catch (e) {}
+    } catch (err) {
+      console.error("Failed to fetch favorites:", err);
+    }
   };
 
   const login = async (email: string, password: string) => {
@@ -126,27 +135,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST" });
-    } catch (e) {}
-    setUser(null);
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      setUser(null);
+      setFavorites([]);
+      localStorage.removeItem("lanka_favorites");
+    }
   };
 
   const toggleFavorite = async (destinationId: string, destinationSlug: string): Promise<boolean> => {
     const isCurrentlyFav = favorites.includes(destinationSlug) || favorites.includes(destinationId);
-    const updatedFavs = isCurrentlyFav
-      ? favorites.filter((f) => f !== destinationSlug && f !== destinationId)
-      : [...favorites, destinationSlug];
+    let newFavs: string[];
 
-    setFavorites(updatedFavs);
-    localStorage.setItem("lanka_favorites", JSON.stringify(updatedFavs));
+    if (isCurrentlyFav) {
+      newFavs = favorites.filter((item) => item !== destinationSlug && item !== destinationId);
+    } else {
+      newFavs = [...favorites, destinationSlug];
+    }
+
+    setFavorites(newFavs);
+    localStorage.setItem("lanka_favorites", JSON.stringify(newFavs));
 
     if (user) {
       try {
         await fetch("/api/favorites", {
-          method: isCurrentlyFav ? "DELETE" : "POST",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ destinationId, destinationSlug }),
         });
-      } catch (e) {}
+      } catch (err) {
+        console.error("Failed to sync favorite with server:", err);
+      }
     }
     return !isCurrentlyFav;
   };
@@ -168,6 +188,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isFavorite,
         language,
         setLanguage,
+        t,
+        languages: SUPPORTED_LANGUAGES,
       }}
     >
       {children}

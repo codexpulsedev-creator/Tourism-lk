@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { User } from "@/context/AuthContext";
+import { LanguageOption } from "@/lib/translations";
 import {
   Heart,
   User as UserIcon,
@@ -15,6 +16,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import CompassLogo from "@/components/ui/CompassLogo";
+import { CountryFlag } from "@/components/ui/CountryFlags";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -25,6 +27,7 @@ interface MobileMenuProps {
   favoritesCount: number;
   language: string;
   setLanguage: (lang: string) => void;
+  languages?: LanguageOption[];
 }
 
 export default function MobileMenu({
@@ -36,6 +39,7 @@ export default function MobileMenu({
   favoritesCount,
   language,
   setLanguage,
+  languages = [],
 }: MobileMenuProps) {
   if (!isOpen) return null;
 
@@ -59,81 +63,81 @@ export default function MobileMenu({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-brandDark/10 text-brandDark/70 transition-colors"
+            className="p-2 rounded-full hover:bg-brandDark/5 text-brandDark/70"
             aria-label="Close menu"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <div className="flex-1 overflow-y-auto px-5 py-6 space-y-1">
-          <p className="text-xs font-semibold text-brandDark/40 uppercase tracking-wider px-3 mb-2">
-            Explore Island
-          </p>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={onClose}
-              className="flex items-center justify-between px-3 py-3 rounded-xl text-base font-medium text-brandDark hover:bg-primary/5 hover:text-primary transition-colors"
-            >
-              <span>{link.label}</span>
-              <ChevronRight className="w-4 h-4 text-brandDark/30" />
-            </Link>
-          ))}
+        {/* Scrollable Nav Items */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={onClose}
+                className="flex items-center justify-between px-4 py-3 rounded-xl font-serif text-base font-semibold text-brandDark hover:bg-primary/5 hover:text-primary transition-colors"
+              >
+                <span>{link.label}</span>
+                <ChevronRight className="w-4 h-4 text-brandDark/30" />
+              </Link>
+            ))}
+          </div>
 
-          <div className="pt-4 border-t border-brandDark/10 my-4">
-            <p className="text-xs font-semibold text-brandDark/40 uppercase tracking-wider px-3 mb-2">
-              My Travel
-            </p>
+          <div className="pt-2 border-t border-brandDark/10 space-y-1">
             <Link
               href="/favorites"
               onClick={onClose}
-              className="flex items-center justify-between px-3 py-3 rounded-xl text-base font-medium text-brandDark hover:bg-primary/5 hover:text-primary transition-colors"
+              className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-brandDark/80 hover:bg-brandDark/5 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <Heart className="w-5 h-5 text-secondary" />
-                <span>Saved Destinations</span>
+                <Heart className="w-4 h-4 text-secondary" />
+                <span>Saved Favorites</span>
               </div>
-              <span className="px-2 py-0.5 rounded-full bg-secondary/20 text-brandDark text-xs font-bold">
-                {favoritesCount}
-              </span>
+              {favoritesCount > 0 && (
+                <span className="px-2 py-0.5 rounded-full bg-secondary text-brandDark text-xs font-bold">
+                  {favoritesCount}
+                </span>
+              )}
             </Link>
 
             {user?.role === "admin" && (
               <Link
                 href="/admin"
                 onClick={onClose}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-base font-medium text-primary hover:bg-primary/10 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-primary hover:bg-primary/5 transition-colors"
               >
-                <ShieldCheck className="w-5 h-5 text-primary" />
+                <ShieldCheck className="w-4 h-4 text-primary" />
                 <span>Admin Portal</span>
               </Link>
             )}
           </div>
 
-          {/* Language selector */}
-          <div className="pt-2">
-            <p className="text-xs font-semibold text-brandDark/40 uppercase tracking-wider px-3 mb-2">
-              Language
-            </p>
-            <div className="grid grid-cols-3 gap-2 px-3">
-              {[
-                { code: "en", label: "English" },
-                { code: "si", label: "සිංහල" },
-                { code: "ta", label: "தமிழ்" },
-              ].map((lang) => (
+          {/* Multilingual Selector in Mobile Menu */}
+          <div className="pt-3 border-t border-brandDark/10">
+            <div className="flex items-center gap-2 px-2 mb-3">
+              <Globe className="w-4 h-4 text-primary" />
+              <p className="text-xs font-bold text-brandDark/70 uppercase tracking-wider">
+                Select Language ({languages.length})
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2 px-1 max-h-48 overflow-y-auto p-1 border border-brandDark/10 rounded-2xl bg-brandBg/50 custom-scrollbar">
+              {languages.map((l) => (
                 <button
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className={`py-2 px-1 text-xs rounded-lg font-medium border text-center transition-all ${
-                    language === lang.code
-                      ? "bg-primary text-white border-primary shadow-sm"
-                      : "bg-brandDark/5 border-brandDark/10 text-brandDark hover:bg-brandDark/10"
+                  key={l.code}
+                  onClick={() => setLanguage(l.code)}
+                  className={`py-2 px-2.5 text-xs rounded-xl font-bold uppercase tracking-wider text-left flex items-center justify-between transition-all ${
+                    language === l.code
+                      ? "bg-[#0097B2] text-white shadow-sm"
+                      : "bg-white border border-brandDark/10 text-brandDark/80 hover:bg-brandDark/5"
                   }`}
                 >
-                  {lang.label}
+                  <div className="flex items-center gap-2 truncate">
+                    <CountryFlag code={l.code} className="w-4 h-3" />
+                    <span className="truncate">{l.name}</span>
+                  </div>
                 </button>
               ))}
             </div>
@@ -169,17 +173,17 @@ export default function MobileMenu({
               <Link
                 href="/login"
                 onClick={onClose}
-                className="w-full flex items-center justify-center py-3 px-4 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm"
+                className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl border border-primary text-primary text-sm font-bold uppercase tracking-wider hover:bg-primary/5 transition-colors"
               >
-                Sign In / Register
+                Sign In
               </Link>
               <Link
                 href="/destinations"
                 onClick={onClose}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-brandDark/20 text-brandDark text-sm font-semibold hover:bg-brandDark/5 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-primary text-white text-sm font-bold uppercase tracking-wider hover:bg-primary-dark transition-colors shadow-sm"
               >
                 <Sparkles className="w-4 h-4 text-secondary" />
-                Explore Destinations
+                <span>Explore Destinations</span>
               </Link>
             </div>
           )}

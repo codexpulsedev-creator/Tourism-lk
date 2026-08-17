@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import DestinationsView from "./DestinationsView";
 import { getDestinations } from "@/lib/dataService";
+import PageHeaderBanner from "@/components/ui/PageHeaderBanner";
 
 export const metadata: Metadata = {
   title: "Destinations in Sri Lanka — LankaExplore",
@@ -13,23 +14,20 @@ export default async function DestinationsPage() {
   const initialDestinations = await getDestinations();
 
   return (
-    <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
-      {/* Header */}
-      <div className="max-w-3xl">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 mb-3">
-          Explore Ceylon
-        </span>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-brandDark tracking-tight">
-          Destinations Across Sri Lanka
-        </h1>
-        <p className="text-base sm:text-lg text-brandDark/70 mt-3 leading-relaxed">
-          From mist-covered mountain tea valleys to historic coastal fortresses and ancient kingdoms, discover the wonders of Sri Lanka.
-        </p>
-      </div>
+    <div className="pb-24 space-y-12">
+      <PageHeaderBanner
+        title="Destinations Across Sri Lanka"
+        subtitle="From mist-covered mountain tea valleys to historic coastal fortresses and ancient kingdoms, discover the wonders of Sri Lanka."
+        category="DISCOVER SRI LANKA"
+        backgroundImage="https://images.unsplash.com/photo-1588598198321-9735fd52455b?q=85&w=2000&auto=format&fit=crop"
+        breadcrumbs={[{ label: "Destinations" }]}
+      />
 
-      <Suspense fallback={<div className="text-center py-20">Loading destinations...</div>}>
-        <DestinationsView initialDestinations={initialDestinations} />
-      </Suspense>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Suspense fallback={<div className="text-center py-20">Loading destinations...</div>}>
+          <DestinationsView initialDestinations={initialDestinations} />
+        </Suspense>
+      </div>
     </div>
   );
 }

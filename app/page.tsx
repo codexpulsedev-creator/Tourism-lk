@@ -10,7 +10,7 @@ import FeaturedItineraries from "@/components/home/FeaturedItineraries";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
 import AccommodationSection from "@/components/home/AccommodationSection";
 import TravelStoriesSection from "@/components/home/TravelStoriesSection";
-import ReviewsSection from "@/components/home/ReviewsSection";
+import WhatsNewSection from "@/components/home/WhatsNewSection";
 import {
   getDestinations,
   getExperiences,
@@ -74,8 +74,8 @@ export default async function HomePage() {
       {/* 11. Ceylon Chronicles (Travel Stories) */}
       <TravelStoriesSection stories={stories} />
 
-      {/* 12. Traveler Reviews */}
-      <ReviewsSection />
+      {/* 12. What's New Section (Matching srilanka.travel Screenshot) */}
+      <WhatsNewSection />
     </div>
   );
 }

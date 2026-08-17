@@ -156,23 +156,33 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/plan-your-trip#transport" className="hover:text-secondary transition-colors">
-                  Trains & Island Transport
+                <Link href="/flight-booking" className="hover:text-secondary transition-colors">
+                  Book Flights to Sri Lanka
                 </Link>
               </li>
               <li>
-                <Link href="/plan-your-trip#weather" className="hover:text-secondary transition-colors">
-                  Monsoons & Best Seasons
+                <Link href="/travel-agents" className="hover:text-secondary transition-colors">
+                  Certified Travel Agents
                 </Link>
               </li>
               <li>
-                <Link href="/favorites" className="hover:text-secondary transition-colors">
-                  My Saved Places
+                <Link href="/camping-sites" className="hover:text-secondary transition-colors">
+                  Camping Sites & Glamping
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-secondary transition-colors">
-                  Contact & Inquiries
+                <Link href="/travel-news" className="hover:text-secondary transition-colors">
+                  Tourism News & Updates
+                </Link>
+              </li>
+              <li>
+                <Link href="/blacklisted-service-providers" className="hover:text-secondary transition-colors text-amber-300">
+                  Blacklisted Providers Notice
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-secondary transition-colors">
+                  About Sri Lanka Tourism
                 </Link>
               </li>
             </ul>

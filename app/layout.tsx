@@ -56,6 +56,11 @@ export const metadata: Metadata = {
     description: "Discover the breathtaking beauty and rich culture of Sri Lanka.",
     images: ["https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1600&auto=format&fit=crop"],
   },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
