@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Search, Calendar, ArrowRight, ExternalLink, Newspaper, Compass, ChevronRight } from "lucide-react";
 import PageHeaderBanner from "@/components/ui/PageHeaderBanner";
 
-export interface NewsItem {
+interface NewsItem {
   id: string;
   slug: string;
   title: string;
@@ -17,7 +17,7 @@ export interface NewsItem {
   image: string;
 }
 
-export const tourismNewsData: NewsItem[] = [
+const tourismNewsData: NewsItem[] = [
   {
     id: "1",
     slug: "bimstec-network-tour-operators-2026",

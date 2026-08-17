@@ -15,6 +15,7 @@ import {
   MapPin,
   Clock,
   Sparkles,
+  Globe,
 } from "lucide-react";
 import PageHeaderBanner from "@/components/ui/PageHeaderBanner";
 
