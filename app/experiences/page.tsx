@@ -60,7 +60,7 @@ const whatToDoCategories = [
     image: "/images/culture/raksha-mask-dancers.jpg", // Authentic Raksha mask dancers in street festival
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations/galle-fort",
+    href: "/destinations",
   },
   {
     title: "Night Life & Fire Pageants",
@@ -92,7 +92,7 @@ const whatToDoCategories = [
     image: "/images/culture/souvenirs-handicrafts.jpg", // Handcrafted wooden magnets & souvenirs
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations/galle-fort",
+    href: "/destinations",
   },
   {
     title: "Spice Gardens",
