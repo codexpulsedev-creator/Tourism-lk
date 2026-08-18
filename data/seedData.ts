@@ -94,7 +94,7 @@ export const seedDestinations = [
       "Rising nearly 200 meters above the central jungle plains, the ancient rock fortress of Sigiriya (Lion Rock) is one of UNESCO's most celebrated World Heritage Sites. Built in the 5th century CE by King Kashyapa, this archaeological masterpiece features landscaped water gardens, exquisite ancient frescoes of celestial maidens, the mirror wall inscribed with historical graffiti, and the colossal lion paw entrance at the plateau.",
     shortDescription: "The legendary 5th-century Lion Rock fortress rising dramatically above the jungle.",
     category: "Heritage",
-    heroImage: "https://images.unsplash.com/photo-1588598198321-9735fd52455b?q=80&w=1600&auto=format&fit=crop",
+    heroImage: "/images/destinations/sigiriya-pidurangala-viewpoint.jpg",
     images: [
       "/images/destinations/sigiriya-pidurangala-viewpoint.jpg",
       "/images/destinations/sigiriya-tuktuk-elephant.jpg",

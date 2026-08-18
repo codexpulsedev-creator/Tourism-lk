@@ -34,6 +34,17 @@ export async function ensureSeeded() {
       await Accommodation.insertMany(seedAccommodations);
       await TravelStory.insertMany(seedStories);
       console.log("✅ Auto-seeding complete!");
+    } else {
+      // Sync destination images, heroImage and details from seedDestinations
+      for (const dest of seedDestinations) {
+        await Destination.findOneAndUpdate(
+          { slug: dest.slug },
+          { $set: { heroImage: dest.heroImage, images: dest.images, description: dest.description, shortDescription: dest.shortDescription } }
+        );
+      }
+      // Remove deleted destinations (e.g. pinnawala, galle) from database if present
+      const validSlugs = seedDestinations.map((d) => d.slug);
+      await Destination.deleteMany({ slug: { $nin: validSlugs } });
     }
   } catch (err) {
     console.warn("Auto-seed error:", err);
