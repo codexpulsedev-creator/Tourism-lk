@@ -39,10 +39,32 @@ export async function ensureSeeded() {
       for (const dest of seedDestinations) {
         await Destination.findOneAndUpdate(
           { slug: dest.slug },
-          { $set: { heroImage: dest.heroImage, images: dest.images, description: dest.description, shortDescription: dest.shortDescription } }
+          {
+            $set: {
+              name: dest.name,
+              province: dest.province,
+              district: dest.district,
+              category: dest.category,
+              heroImage: dest.heroImage,
+              images: dest.images,
+              description: dest.description,
+              shortDescription: dest.shortDescription,
+              latitude: dest.latitude,
+              longitude: dest.longitude,
+              bestTimeToVisit: dest.bestTimeToVisit,
+              weatherSummary: dest.weatherSummary,
+              attractions: dest.attractions,
+              activities: dest.activities,
+              featured: dest.featured,
+              rating: dest.rating,
+              reviewsCount: dest.reviewsCount,
+              tags: dest.tags,
+            },
+          },
+          { upsert: true, new: true }
         );
       }
-      // Remove deleted destinations (e.g. pinnawala, galle) from database if present
+      // Remove deleted destinations from database if present
       const validSlugs = seedDestinations.map((d) => d.slug);
       await Destination.deleteMany({ slug: { $nin: validSlugs } });
     }

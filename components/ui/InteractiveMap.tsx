@@ -28,7 +28,7 @@ export default function InteractiveMap({ destinations }: InteractiveMapProps) {
   );
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const categories = ["All", "Heritage", "Mountains", "Wildlife", "Beaches"];
+  const categories = ["All", "Heritage", "Mountains", "Wildlife", "Beaches", "Cities", "Nature"];
 
   const filteredDestinations =
     activeCategory === "All"

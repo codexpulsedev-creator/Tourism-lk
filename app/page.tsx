@@ -31,7 +31,7 @@ export default async function HomePage() {
     accommodations,
     stories,
   ] = await Promise.all([
-    getDestinations({ limit: 10 }),
+    getDestinations(),
     getExperiences({ limit: 8 }),
     getEvents({ limit: 6 }),
     getItineraries({ limit: 4 }),

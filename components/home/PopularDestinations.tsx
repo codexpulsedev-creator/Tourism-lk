@@ -13,7 +13,7 @@ interface PopularDestinationsProps {
 export default function PopularDestinations({ destinations }: PopularDestinationsProps) {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "Mountains", "Heritage", "Beaches", "Wildlife"];
+  const categories = ["All", "Heritage", "Beaches", "Mountains", "Wildlife", "Nature", "Cities"];
 
   // De-duplicate destinations by slug or name
   const uniqueDests = Array.from(
