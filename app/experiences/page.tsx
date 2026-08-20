@@ -16,99 +16,99 @@ export const metadata: Metadata = {
 const whatToDoCategories = [
   {
     title: "Things to See",
-    tagline: "Iconic landmarks & hidden gems.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=800&auto=format&fit=crop", // Blue train
+    tagline: "Discover Sri Lanka's iconic landmarks, ancient cities, scenic viewpoints, and hidden gems.",
+    image: "/images/destinations/sigiriya-lion-rock-monumental.jpg",
     badge: "Nature",
     badgeColor: "bg-blue-600",
-    href: "/destinations",
+    href: "/experiences/things-to-see",
   },
   {
     title: "Pilgrimage & Sacred Shrines",
-    tagline: "Sacred kovils, temples, and spiritual processions.",
-    image: "/images/culture/hindu-kovil-chariot.jpg", // High-res Nallur Kovil chariot procession
+    tagline: "Explore Sri Lanka's sacred temples, kovils, shrines, and centuries-old pilgrimage traditions.",
+    image: "/images/destinations/kandy-temple-tooth-sunset.jpg",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/experiences/sacred-kandy-cultural-pageantry",
+    href: "/experiences/pilgrimage-sacred-shrines",
   },
   {
     title: "Ayurveda & Healing",
-    tagline: "Ancient healing for body, spirit, and mind.",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800&auto=format&fit=crop", // Shirodhara oil pour
+    tagline: "Experience ancient Sri Lankan Ayurveda therapies, herbal remedies, and traditional healing practices.",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800&auto=format&fit=crop",
     badge: "Wellness",
     badgeColor: "bg-emerald-600",
-    href: "/experiences/ayurveda-wellness-retreat-bentota",
+    href: "/experiences/ayurveda-healing",
   },
   {
     title: "Spa & Wellness",
-    tagline: "Rejuvenate at world-class holistic sanctuaries.",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800&auto=format&fit=crop", // Luxury spa therapy
+    tagline: "Relax and rejuvenate with luxurious spa treatments and wellness experiences surrounded by Sri Lanka's tropical beauty.",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800&auto=format&fit=crop",
     badge: "Wellness",
     badgeColor: "bg-emerald-600",
-    href: "/experiences/ayurveda-wellness-retreat-bentota",
+    href: "/experiences/spa-wellness",
   },
   {
     title: "Eco Tourism & Wildlife",
-    tagline: "Sustainable safaris in untouched wilderness.",
-    image: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=800&auto=format&fit=crop", // Safari traveler
+    tagline: "Discover Sri Lanka's extraordinary wildlife, national parks, forests, and responsible eco-tourism experiences.",
+    image: "/images/destinations/yala-elephant-family.jpg",
     badge: "Nature",
     badgeColor: "bg-blue-600",
-    href: "/experiences/yala-national-park-safari",
+    href: "/experiences/eco-tourism-wildlife",
   },
   {
     title: "Masks & Folk Traditions",
-    tagline: "Ambalangoda Raksha masks & traditional dance.",
-    image: "/images/culture/raksha-mask-dancers.jpg", // Authentic Raksha mask dancers in street festival
+    tagline: "Discover Sri Lanka's vibrant masks, folk dances, rituals, and living cultural traditions.",
+    image: "/images/culture/raksha-mask-dancers.jpg",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations",
+    href: "/experiences/masks-folk-traditions",
   },
   {
     title: "Night Life & Fire Pageants",
-    tagline: "Southern fire rituals, drumming & beach clubs.",
-    image: "/images/culture/ritual-demon-dance.jpg", // Spectacular Thovil fire ritual demon dancer
+    tagline: "Experience Sri Lanka after dark with vibrant fire dances, traditional drumming, cultural pageants, and lively night events.",
+    image: "/images/culture/ritual-demon-dance.jpg",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations/mirissa",
+    href: "/experiences/night-life-fire-pageants",
   },
   {
     title: "Buy Gemstone",
-    tagline: "Island of gems: sapphires and treasures.",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop", // Blue sapphire gemstones
+    tagline: "Discover Sri Lanka's world-famous sapphires, precious gemstones, jewellery, and traditional gem markets.",
+    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations",
+    href: "/experiences/buy-gemstone",
   },
   {
     title: "Dining & Seafood",
-    tagline: "Flavours of authentic Sri Lankan cuisine.",
-    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop", // Ceylon curries
+    tagline: "Taste authentic Sri Lankan cuisine, from fragrant rice and curry to fresh seafood and unforgettable local flavours.",
+    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/experiences/ceylon-tea-trails-tasting-experience",
+    href: "/experiences/dining-seafood",
   },
   {
     title: "Tourist Souvenir Shops",
-    tagline: "Curated wood carvings, fridge magnets & crafts.",
-    image: "/images/culture/souvenirs-handicrafts.jpg", // Handcrafted wooden magnets & souvenirs
+    tagline: "Shop for authentic Sri Lankan handicrafts, traditional masks, batik, wood carvings, and memorable gifts.",
+    image: "/images/culture/souvenirs-handicrafts.jpg",
     badge: "Culture",
     badgeColor: "bg-purple-600",
-    href: "/destinations",
+    href: "/experiences/tourist-souvenir-shops",
   },
   {
     title: "Spice Gardens",
-    tagline: "Fragrant trails of cinnamon and cardamom.",
-    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop", // Spices
+    tagline: "Walk through fragrant spice gardens and discover the cinnamon, pepper, cardamom, and herbs that shape Sri Lankan cuisine.",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop",
     badge: "Nature",
     badgeColor: "bg-blue-600",
-    href: "/experiences",
+    href: "/experiences/spice-gardens",
   },
   {
     title: "Camping Sites & Glamping",
-    tagline: "Official registered safari camp sites.",
-    image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=800&auto=format&fit=crop", // Mountain tents
+    tagline: "Sleep beneath Sri Lanka's stars with unforgettable camping and luxury glamping experiences in forests, national parks, and scenic landscapes.",
+    image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=800&auto=format&fit=crop",
     badge: "Nature",
     badgeColor: "bg-blue-600",
-    href: "/camping-sites",
+    href: "/experiences/camping-sites-glamping",
   },
 ];
 

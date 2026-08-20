@@ -67,6 +67,40 @@ export async function ensureSeeded() {
       // Remove deleted destinations from database if present
       const validSlugs = seedDestinations.map((d) => d.slug);
       await Destination.deleteMany({ slug: { $nin: validSlugs } });
+
+      // Sync experiences from seedExperiences
+      for (const exp of seedExperiences) {
+        await Experience.findOneAndUpdate(
+          { slug: exp.slug },
+          {
+            $set: {
+              title: exp.title,
+              name: exp.name,
+              category: exp.category,
+              badge: exp.badge,
+              badgeColor: exp.badgeColor,
+              shortDescription: exp.shortDescription,
+              description: exp.description,
+              image: exp.image,
+              images: exp.images,
+              duration: exp.duration,
+              difficulty: exp.difficulty,
+              bestSeason: exp.bestSeason,
+              location: exp.location,
+              destinations: exp.destinations,
+              featured: exp.featured,
+              highlights: exp.highlights,
+              whyExperience: exp.whyExperience,
+              popularPlaces: exp.popularPlaces,
+              thingsToDo: exp.thingsToDo,
+              travelTips: exp.travelTips,
+            },
+          },
+          { upsert: true, new: true }
+        );
+      }
+      const validExpSlugs = seedExperiences.map((e) => e.slug);
+      await Experience.deleteMany({ slug: { $nin: validExpSlugs } });
     }
   } catch (err) {
     console.warn("Auto-seed error:", err);
